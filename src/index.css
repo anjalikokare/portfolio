@@ -54,6 +54,7 @@
     0%, 100% { transform: translateY(0) rotate(0deg); }
     50% { transform: translateY(-10px) rotate(4deg); }
   }
+
   @keyframes blink {
     50% { opacity: 0; }
   }
@@ -65,6 +66,8 @@
     50% { transform: translate(30px, -20px) scale(1.08); }
   }
 }
+
+@custom-variant dark (&:where(.dark, .dark *));
 
 @layer base {
   html {
@@ -82,6 +85,56 @@
   :focus-visible {
     @apply rounded-md outline-2 outline-offset-2 outline-lavender-500;
   }
+}
+
+.dark {
+  --color-paper: #18151f;
+  --color-ink: #f8f5ef;
+  --color-muted: #b7b1c2;
+  --color-line: #393442;
+  --color-lavender-50: #28233a;
+  --color-lavender-100: #352e50;
+  --color-lavender-300: #796ab3;
+  --color-lavender-500: #a391ef;
+  --color-lavender-700: #c2b5ff;
+  --color-peach-50: #352720;
+  --color-peach-100: #4a3428;
+  --color-peach-300: #df9b79;
+  --color-peach-500: #ec9b78;
+  --color-peach-700: #ffc2a4;
+  --color-mint-50: #1c3229;
+  --color-mint-100: #284838;
+  --color-mint-300: #74bf9d;
+  --color-mint-500: #57bd91;
+  --color-mint-700: #9be1c1;
+  --color-sky-50: #1d2a3a;
+  --color-sky-100: #27384d;
+  --color-sky-300: #7ca8d3;
+  --color-sky-700: #aecdf1;
+  --color-butter-50: #3a3321;
+  --color-butter-100: #4c4227;
+  --color-butter-300: #dbc27d;
+  --color-butter-700: #efd992;
+}
+
+.dark .bg-white {
+  background-color: #211d29;
+}
+
+.dark .bg-paper\/80,
+.dark .bg-paper\/95 {
+  background-color: rgb(24 21 31 / 0.88);
+}
+
+.dark .bg-paper {
+  background-color: var(--color-paper);
+}
+
+.profile-glow {
+  background:
+    radial-gradient(circle at 20% 20%, rgb(124 104 238 / 0.24), transparent 36%),
+    radial-gradient(circle at 82% 78%, rgb(47 166 118 / 0.18), transparent 34%);
+  filter: blur(18px);
 }
 
 /* Reveal-on-scroll. Elements start slightly lowered and transparent. */

@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 import { ArrowUp, Heart } from 'lucide-react'
 import Navbar from './components/Navbar'
-import Hero, { TechMarquee } from './components/Hero'
+import Hero from './components/Hero'
 import About from './components/About'
 import Experience from './components/Experience'
 import Projects from './components/Projects'
@@ -59,7 +59,6 @@ export default function App() {
       <Navbar />
       <main id="main">
         <Hero />
-        <TechMarquee />
         <About />
         <Experience />
         <Projects />

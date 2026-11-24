@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import { Menu, X } from 'lucide-react'
+import { Menu, Moon, Sun, X } from 'lucide-react'
 import { navItems, profile } from '../data/portfolio'
 
 function useActiveSection(ids: string[]) {
@@ -30,6 +30,15 @@ export default function Navbar() {
   const [open, setOpen] = useState(false)
   const [scrolled, setScrolled] = useState(false)
   const [progress, setProgress] = useState(0)
+  const [dark, setDark] = useState(() => {
+    const saved = localStorage.getItem('theme')
+    return saved ? saved === 'dark' : window.matchMedia('(prefers-color-scheme: dark)').matches
+  })
+
+  useEffect(() => {
+    document.documentElement.classList.toggle('dark', dark)
+    localStorage.setItem('theme', dark ? 'dark' : 'light')
+  }, [dark])
 
   useEffect(() => {
     const onScroll = () => {
@@ -85,6 +94,14 @@ export default function Navbar() {
         </ul>
 
         <div className="flex items-center gap-2">
+          <button
+            type="button"
+            onClick={() => setDark((value) => !value)}
+            aria-label={dark ? 'Switch to light theme' : 'Switch to dark theme'}
+            className="grid h-10 w-10 place-items-center rounded-full border border-line bg-white text-muted transition hover:-translate-y-0.5 hover:text-ink"
+          >
+            {dark ? <Sun className="h-4 w-4" /> : <Moon className="h-4 w-4" />}
+          </button>
           <a
             href="#contact"
             className="hidden rounded-full bg-ink px-4 py-2 text-[13px] font-semibold text-paper shadow-sm transition hover:-translate-y-0.5 hover:shadow-md sm:inline-flex"

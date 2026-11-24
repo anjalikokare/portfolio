@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 import { ArrowDown, Download, MapPin } from 'lucide-react'
-import { heroHighlights, links, profile, skills } from '../data/portfolio'
+import { heroHighlights, links, profile } from '../data/portfolio'
 import { accentStyles, GithubIcon, LinkedinIcon, Sparkle } from '../lib/ui'
 
 /** Cycles through the headline roles with a soft slide. */
@@ -28,69 +28,59 @@ function RotatingRole() {
   )
 }
 
-/** Endless strip of the tech I use, taken from the skills list. */
-export function TechMarquee() {
-  const items = skills.flatMap((g) => g.items).filter((x) => !['Excel', 'VS Code', 'HTML/CSS', 'Relational Schema Design', 'Ensemble Modeling'].includes(x))
-  const row = [...items, ...items]
-  return (
-    <div className="group relative overflow-hidden border-y border-line bg-white/70 py-4 [mask-image:linear-gradient(to_right,transparent,black_8%,black_92%,transparent)]" aria-label="Technologies I use">
-      <ul className="flex w-max animate-marquee gap-3 group-hover:[animation-play-state:paused]">
-        {row.map((t, i) => (
-          <li key={i} aria-hidden={i >= items.length} className="flex items-center gap-3 whitespace-nowrap text-sm font-semibold text-muted">
-            <span className="h-1.5 w-1.5 rounded-full bg-lavender-300" aria-hidden />
-            {t}
-          </li>
-        ))}
-      </ul>
-    </div>
-  )
-}
-
 function CodeCard() {
-  // A playful "developer profile" card in place of a photo.
+  const stats = [
+    { value: '90', label: 'tests', accent: 'lavender' },
+    { value: '65', label: 'endpoints', accent: 'peach' },
+    { value: '0.82629', label: 'Kaggle', accent: 'mint' },
+  ]
   return (
-    <div className="relative">
-      <div className="absolute -inset-4 -z-10 rounded-[2rem] bg-gradient-to-br from-lavender-100 via-peach-50 to-mint-100 blur-2xl" aria-hidden />
-      <figure
-        className="overflow-hidden rounded-3xl border border-line bg-white shadow-[0_20px_60px_-25px_rgba(33,31,46,0.35)]"
-        aria-label="Code-style profile card summarizing Anjali's profile"
-      >
-        <div className="flex items-center gap-2 border-b border-line bg-paper px-4 py-3">
-          <span className="h-3 w-3 rounded-full bg-peach-300" />
-          <span className="h-3 w-3 rounded-full bg-butter-300" />
-          <span className="h-3 w-3 rounded-full bg-mint-300" />
-          <span className="ml-3 font-mono text-xs text-muted">anjali.py</span>
+    <div className="relative mx-auto w-full max-w-[31rem]">
+      <div className="profile-glow absolute -inset-8 -z-10 rounded-[3rem]" aria-hidden />
+      <figure className="relative overflow-hidden rounded-[2rem] border border-line bg-white p-5 shadow-[0_28px_70px_-35px_rgba(33,31,46,0.55)] sm:p-7" aria-label="Anjali's current focus and portfolio highlights">
+        <div className="flex items-center justify-between border-b border-line pb-5">
+          <div>
+            <p className="font-mono text-[10px] uppercase tracking-[0.22em] text-muted">Profile / 2026</p>
+            <p className="mt-1 text-lg font-bold">Building in public</p>
+          </div>
+          <span className="inline-flex items-center gap-2 rounded-full bg-mint-50 px-3 py-1.5 text-xs font-bold text-mint-700">
+            <span className="h-2 w-2 rounded-full bg-mint-500" /> Available
+          </span>
         </div>
-        <pre className="overflow-x-auto px-5 py-5 font-mono text-[11px] leading-[1.7] sm:text-[13px] sm:leading-6">
-          <code>
-            <span className="text-lavender-700">class</span> <span className="text-sky-700">Anjali</span>:{'\n'}
-            {'    '}school = <span className="text-mint-700">"IIT Madras"</span>{'\n'}
-            {'    '}degree = <span className="text-mint-700">"B.S. Data Science & Applications"</span>{'\n'}
-            {'    '}builds = [{'\n'}
-            {'        '}<span className="text-mint-700">"secure full-stack apps"</span>,{'\n'}
-            {'        '}<span className="text-mint-700">"ML & NLP pipelines"</span>,{'\n'}
-            {'    '}]{'\n'}
-            {'    '}stack = {'{'}{'\n'}
-            {'        '}<span className="text-peach-700">"backend"</span>: [<span className="text-mint-700">"FastAPI"</span>, <span className="text-mint-700">"Flask"</span>],{'\n'}
-            {'        '}<span className="text-peach-700">"frontend"</span>: [<span className="text-mint-700">"React"</span>, <span className="text-mint-700">"Vue.js"</span>],{'\n'}
-            {'        '}<span className="text-peach-700">"ml"</span>: [<span className="text-mint-700">"scikit-learn"</span>, <span className="text-mint-700">"LightGBM"</span>],{'\n'}
-            {'    '}{'}'}{'\n'}
-            {'    '}kaggle_score = <span className="text-butter-700">0.82629</span>{'\n'}
-            {'    '}tests_passing = <span className="text-butter-700">90</span>{'\n'}
-            {'\n'}
-            <span className="text-muted">&gt;&gt;&gt; </span>Anjali().status(){'\n'}
-            <span className="text-mint-700">'open to internships'</span>
-            <span className="ml-0.5 inline-block h-4 w-2 translate-y-0.5 animate-blink bg-lavender-500" aria-hidden />
-          </code>
-        </pre>
+
+        <div className="grid grid-cols-3 gap-2 py-5">
+          {stats.map((stat) => (
+            <div key={stat.label} className={`rounded-2xl px-2 py-4 text-center ${accentStyles[stat.accent as keyof typeof accentStyles].soft}`}>
+              <strong className={`block text-lg font-extrabold sm:text-2xl ${accentStyles[stat.accent as keyof typeof accentStyles].text}`}>{stat.value}</strong>
+              <span className="mt-1 block text-[10px] font-bold uppercase tracking-wider text-muted sm:text-xs">{stat.label}</span>
+            </div>
+          ))}
+        </div>
+
+        <div className="relative rounded-2xl border border-line bg-ink p-5 text-paper">
+          <div className="absolute right-4 top-4 flex gap-1.5" aria-hidden>
+            <span className="h-2 w-2 rounded-full bg-peach-300" />
+            <span className="h-2 w-2 rounded-full bg-butter-300" />
+            <span className="h-2 w-2 rounded-full bg-mint-300" />
+          </div>
+          <p className="font-mono text-xs text-paper/55">~/current-focus</p>
+          <p className="mt-4 max-w-sm font-serif text-2xl leading-tight sm:text-[1.65rem]">
+            Secure systems.<br />
+            Useful data.<br />
+            <span className="text-peach-300">Thoughtful software.</span>
+          </p>
+          <div className="mt-5 flex items-center gap-2 border-t border-white/10 pt-4 font-mono text-[10px] text-paper/60 sm:text-xs">
+            <span className="h-2 w-2 animate-pulse rounded-full bg-mint-300" />
+            Seeking internships
+          </div>
+        </div>
       </figure>
 
-      {/* Floating stickers */}
-      <div className="absolute -left-6 -top-5 hidden animate-float rounded-2xl border border-line bg-white px-3 py-2 text-xs font-semibold shadow-lg sm:block">
-        <span className="mr-1" aria-hidden>🎓</span> IIT Madras
+      <div className="absolute -left-3 -top-4 hidden rotate-[-3deg] rounded-2xl border border-line bg-white px-4 py-3 text-xs font-bold shadow-lg sm:block">
+        🎓 IIT Madras
       </div>
-      <div className="absolute -right-4 bottom-16 hidden animate-float-slow rounded-2xl border border-line bg-white px-3 py-2 text-xs font-semibold shadow-lg sm:block">
-        <span className="mr-1" aria-hidden>✅</span> 90 tests passing
+      <div className="absolute -bottom-4 -right-2 hidden rotate-3 rounded-2xl border border-line bg-white px-4 py-3 text-xs font-bold shadow-lg sm:block">
+        <span className="text-mint-500">●</span> Open to work
       </div>
     </div>
   )
