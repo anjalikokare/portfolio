@@ -60,7 +60,9 @@ export default function Navbar() {
   return (
     <header
       className={`fixed inset-x-0 top-0 z-50 transition-all duration-300 ${
-        scrolled ? 'border-b border-line/80 bg-paper/80 backdrop-blur-xl' : 'bg-transparent'
+        scrolled
+          ? 'border-b border-line/80 bg-paper/80 text-ink backdrop-blur-xl'
+          : 'border-b border-white/10 bg-[#171c2b]/90 text-white backdrop-blur-xl'
       }`}
     >
       {/* Scroll progress */}
@@ -84,7 +86,11 @@ export default function Navbar() {
                 href={`#${item.id}`}
                 aria-current={active === item.id ? 'true' : undefined}
                 className={`relative rounded-full px-3 py-1.5 text-[13px] font-medium transition-colors ${
-                  active === item.id ? 'bg-lavender-100 text-lavender-700' : 'text-muted hover:text-ink'
+                  active === item.id
+                    ? 'bg-lavender-100 text-lavender-700'
+                    : scrolled
+                      ? 'text-muted hover:text-ink'
+                      : 'text-white/65 hover:text-white'
                 }`}
               >
                 {item.label}
@@ -98,13 +104,19 @@ export default function Navbar() {
             type="button"
             onClick={() => setDark((value) => !value)}
             aria-label={dark ? 'Switch to light theme' : 'Switch to dark theme'}
-            className="grid h-10 w-10 place-items-center rounded-full border border-line bg-white text-muted transition hover:-translate-y-0.5 hover:text-ink"
+            className={`grid h-10 w-10 place-items-center rounded-full border transition hover:-translate-y-0.5 ${
+              scrolled
+                ? 'border-line bg-white text-muted hover:text-ink'
+                : 'border-white/15 bg-white/[0.06] text-white hover:bg-white/10'
+            }`}
           >
             {dark ? <Sun className="h-4 w-4" /> : <Moon className="h-4 w-4" />}
           </button>
           <a
             href="#contact"
-            className="hidden rounded-full bg-ink px-4 py-2 text-[13px] font-semibold text-paper shadow-sm transition hover:-translate-y-0.5 hover:shadow-md sm:inline-flex"
+            className={`hidden rounded-full px-4 py-2 text-[13px] font-semibold shadow-sm transition hover:-translate-y-0.5 hover:shadow-md sm:inline-flex ${
+              scrolled ? 'bg-ink text-paper' : 'bg-[#b9f29a] text-[#171c2b]'
+            }`}
           >
             Let’s Connect
           </a>
