@@ -44,6 +44,13 @@ function CertificateModal({ cert, onClose }: { cert: Certificate | null; onClose
 
 export default function Achievements() {
   const [active, setActive] = useState<Certificate | null>(null)
+  const filters = ['All', 'HackerRank', 'NPTEL', 'Other'] as const
+  const [filter, setFilter] = useState<(typeof filters)[number]>('All')
+  const certs = achievements.certificates.filter((c) =>
+    filter === 'All' ? true
+    : filter === 'HackerRank' ? c.issuer.startsWith('HackerRank')
+    : filter === 'NPTEL' ? c.issuer.startsWith('NPTEL')
+    : !c.issuer.startsWith('HackerRank') && !c.issuer.startsWith('NPTEL'))
 
   return (
     <Section
@@ -87,9 +94,27 @@ export default function Achievements() {
 
       {/* Certificate gallery */}
       <Reveal className="mt-14">
-        <div className="mb-5 flex items-baseline justify-between gap-3"><h3 className="text-lg font-bold">Certificate gallery</h3><p className="text-xs text-muted">Tap a certificate to view it</p></div>
-        <ul className="grid grid-cols-2 gap-3 sm:grid-cols-3 sm:gap-4 lg:grid-cols-6">
-          {achievements.certificates.map((c) => (
+        <div className="mb-5 flex flex-wrap items-center justify-between gap-3">
+          <div>
+            <h3 className="text-lg font-bold">Certificate gallery</h3>
+            <p className="text-xs text-muted">{achievements.certificates.length} certificates · tap one to view it</p>
+          </div>
+          <div role="group" aria-label="Filter certificates" className="flex flex-wrap gap-1.5 rounded-full border border-line bg-white p-1">
+            {filters.map((f) => (
+              <button
+                key={f}
+                type="button"
+                aria-pressed={filter === f}
+                onClick={() => setFilter(f)}
+                className={`rounded-full px-3 py-1.5 text-xs font-semibold transition ${filter === f ? 'bg-ink text-paper' : 'text-muted hover:text-ink'}`}
+              >
+                {f}
+              </button>
+            ))}
+          </div>
+        </div>
+        <ul className="grid grid-cols-2 gap-3 sm:gap-4 md:grid-cols-3">
+          {certs.map((c) => (
             <li key={c.title} className="min-w-0">
               {c.image ? (
                 <button
@@ -104,8 +129,8 @@ export default function Achievements() {
                     </span>
                   </div>
                   <div className="px-3 py-2.5 sm:px-4 sm:py-3">
-                    <p className="truncate text-sm font-semibold" title={c.title}>{c.title}</p>
-                    <p className="text-xs text-muted">{c.issuer}</p>
+                    <p className="line-clamp-2 text-sm font-semibold leading-snug">{c.title}</p>
+                    <p className="mt-0.5 text-xs text-muted">{c.issuer}</p>
                   </div>
                 </button>
               ) : (

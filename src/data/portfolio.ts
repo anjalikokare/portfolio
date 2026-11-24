@@ -328,6 +328,7 @@ export const achievements = {
         'Elite + Silver: Cloud Computing (81%)',
         'Elite + Silver: Software Conceptual Design (80%)',
         'Elite: Business Analytics & Text Mining Modeling using Python (72%)',
+        'Elite + Silver: Soft Skill Development (84%)',
       ],
     },
   ],
@@ -337,8 +338,10 @@ export const achievements = {
     { title: 'SQL (Advanced)', issuer: 'HackerRank', image: 'certificates/hackerrank-sql-advanced.jpg' },
     { title: 'Cloud Foundations', issuer: 'AWS Academy', image: 'certificates/aws-academy-cloud-foundations.png' },
     { title: 'Data Science with Python Internship', issuer: 'Skill Nexis', image: 'certificates/skill-nexis-internship.jpg' },
-    // TODO: Add image — NPTEL certificates (Cloud Computing, Software Conceptual Design, Business Analytics) were not in the files provided.
-    { title: 'NPTEL Certificates', issuer: 'NPTEL' },
+    { title: 'Cloud Computing · 81%', issuer: 'NPTEL · Elite + Silver', image: 'certificates/nptel-cloud-computing.jpg' },
+    { title: 'Software Conceptual Design · 80%', issuer: 'NPTEL · Elite + Silver', image: 'certificates/nptel-software-conceptual-design.jpg' },
+    { title: 'Business Analytics & Text Mining · 72%', issuer: 'NPTEL · Elite', image: 'certificates/nptel-business-analytics.jpg' },
+    { title: 'Soft Skill Development · 84%', issuer: 'NPTEL · Elite + Silver', image: 'certificates/nptel-soft-skill-development.jpg' },
   ] as Certificate[],
 }
 
