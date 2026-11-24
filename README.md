@@ -1,117 +1,147 @@
-# Anjali Rameshwar Kokare — Portfolio
+# ✨ Anjali Rameshwar Kokare
 
-A personal portfolio built with **React 19 + TypeScript + Vite + Tailwind CSS v4**.
-All content comes from one data file, so updating the site doesn't require touching components.
+<div align="center">
 
-## Run it locally
+### 🚀 Full-Stack Developer · Data Science Enthusiast · Problem Solver
 
-Requires Node.js 18+ (20 or 22 LTS recommended).
+[![Portfolio](https://img.shields.io/badge/Portfolio-Live-ff6b6b?style=for-the-badge&logo=vercel&logoColor=white)](https://anjalikokare.vercel.app)
+[![LinkedIn](https://img.shields.io/badge/LinkedIn-Connect-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white)](https://linkedin.com/in/anjalikokare)
+[![GitHub](https://img.shields.io/badge/GitHub-Follow-181717?style=for-the-badge&logo=github&logoColor=white)](https://github.com/anjalikokare)
+[![Email](https://img.shields.io/badge/Email-Say_Hello-EA4335?style=for-the-badge&logo=gmail&logoColor=white)](mailto:anjalikokare2004@gmail.com)
+
+<img src="https://readme-typing-svg.demolab.com?font=JetBrains+Mono&weight=700&size=24&pause=1000&color=FF6B6B&center=true&vCenter=true&width=650&lines=Building+clean+digital+experiences;Turning+data+into+decisions;Writing+code+with+purpose" alt="Typing introduction" />
+
+</div>
+
+---
+
+## 🌈 About the Project
+
+A modern, responsive developer portfolio with expressive typography, smooth reveals, interactive project cards, certificate galleries, and a working contact form.
+
+> Built to feel premium, load fast, and stay easy to customize.
+
+## 🧰 Tech Stack
+
+<div align="center">
+
+![React](https://img.shields.io/badge/React_19-20232A?style=for-the-badge&logo=react&logoColor=61DAFB)
+![TypeScript](https://img.shields.io/badge/TypeScript-3178C6?style=for-the-badge&logo=typescript&logoColor=white)
+![Vite](https://img.shields.io/badge/Vite-646CFF?style=for-the-badge&logo=vite&logoColor=FFD62E)
+![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-38B2AC?style=for-the-badge&logo=tailwind-css&logoColor=white)
+![Vercel](https://img.shields.io/badge/Vercel-000000?style=for-the-badge&logo=vercel&logoColor=white)
+
+</div>
+
+## 🎨 Highlights
+
+| Section | What it Includes |
+|:--|:--|
+| 🏠 Hero | Profile introduction, highlights, resume and social CTAs |
+| 👩‍💻 About | Personal summary and career focus |
+| 💼 Experience | Internships and real-world project work |
+| 🛠️ Projects | Expandable project cards with technology tags |
+| ⚡ Skills | Core development, data, and engineering tools |
+| 🎓 Education | Academic journey and qualifications |
+| 🏆 Achievements | Certificates, awards, and recognition |
+| 📬 Contact | Interests and a validated email contact form |
+
+## 📸 Preview
+
+<div align="center">
+
+**Add a screenshot here:** `public/portfolio-preview.png`
+
+</div>
+
+## 🚀 Run Locally
+
+**Requirements:** Node.js 18 or newer
 
 ```bash
+# Clone the repository
+git clone https://github.com/anjalikokare/portfolio.git
+cd portfolio
+
+# Install dependencies
 npm install
-npm run dev        # http://localhost:5173
-npm run build      # production build into dist/
-npm run preview    # serve the production build locally
+
+# Start the development server
+npm run dev
 ```
 
-## Where to edit things
+Open **http://localhost:5173** in your browser.
 
-| What | Where |
-| --- | --- |
-| All text, numbers, projects, skills, achievements | `src/data/portfolio.ts` |
-| GitHub / LinkedIn / LeetCode / Kaggle URLs | `links` in `src/data/portfolio.ts` |
-| Project GitHub links | `github` field of each project in `src/data/portfolio.ts` |
-| Resume PDF (Download Resume button) | replace `public/Anjali_Kokare_Resume.pdf` |
-| Certificate images | `public/certificates/` + `achievements.certificates` in `portfolio.ts` |
-| Certificate verification links | `verifyUrl` on each certificate (search `TODO: Add certificate verification URL`) |
-| Profile photo (optional) | put it in `public/` and set `profile.profileImage` |
-| Colours, fonts, animations | `src/index.css` (`@theme` block) |
-| Page title, SEO and Open Graph tags | `index.html` |
-| Favicon | `public/favicon.svg` |
-
-Search the project for `TODO:` to find every placeholder:
-
-- `TODO: Add image` — NPTEL certificate images (not in the files provided), Open Graph preview image (`public/og-image.png`, 1200×630).
-- `TODO: Add certificate verification URL` — add `verifyUrl` to any certificate.
-- `TODO: Replace with your deployed URL` — canonical URL in `index.html`.
-- `TODO: Add link` — shown only if a project has no `github` link.
-
-## Contact form backend
-
-`api/contact.ts` is a **Vercel Function** at `POST /api/contact`. It:
-
-- validates name, email and message (length limits, email format),
-- ignores bots through a hidden honeypot field and rate-limits each IP (5 messages / 10 min),
-- emails the message to you through [Resend](https://resend.com), with **Reply-To** set to the sender,
-  so you can answer straight from your inbox.
-
-If the backend isn't configured or is unreachable, the form says so and opens the visitor's own
-email app instead. It never shows "sent" unless the server confirmed delivery.
-
-**Turn it on (5 minutes, free):**
-
-1. Sign up at [resend.com](https://resend.com) with the email you want messages delivered to.
-2. Resend → API Keys → *Create API key* → copy it (starts with `re_`).
-3. Vercel → your project → Settings → Environment Variables, add:
-   - `RESEND_API_KEY` = your key
-   - `CONTACT_TO_EMAIL` = the same email you signed up to Resend with
-4. Redeploy (Deployments → ⋯ → Redeploy). Send yourself a test message from the live site.
-
-Resend's test sender (`onboarding@resend.dev`) only delivers to your own Resend email, which is
-exactly what a contact form needs. To send from your own domain later, verify it in Resend and set
-`CONTACT_FROM_EMAIL`.
-
-Run the backend tests with `npm run test:api` (8 tests). To run site + API together locally:
-`npx vercel dev`.
-
-## Project structure
-
-```
-src/
-  data/portfolio.ts        ← single source of truth for all content
-  lib/ui.tsx               ← shared bits: Section, Reveal, Chip, accent colours, brand icons
-  components/
-    Navbar.tsx             ← sticky nav, active-section indicator, scroll progress, mobile menu
-    Hero.tsx               ← intro, CTA buttons, highlights, code-style profile card
-    About.tsx
-    Experience.tsx         ← MentorConnect, Smart India Hackathon, Skill Nexis
-    Projects.tsx           ← data-driven cards with expandable details
-    Skills.tsx
-    Education.tsx
-    Achievements.tsx       ← achievement cards + certificate gallery with modal
-    Contact.tsx            ← interests strip + contact section
-  App.tsx                  ← page layout, footer, back-to-top button
-api/
-  contact.ts               ← contact form backend (Vercel Function)
-tests/
-  contact.test.ts          ← backend tests (npm run test:api)
-public/
-  Anjali_Kokare_Resume.pdf
-  certificates/            ← real certificate images
-  favicon.svg
-```
-
-## Put it on GitHub and Vercel
-
-**1. Push to GitHub** (once): create an empty repo named `portfolio` at
-[github.com/new](https://github.com/new) (no README), then in this folder:
+## 📜 Available Scripts
 
 ```bash
-git remote add origin https://github.com/anjalikokare/portfolio.git
-git branch -M main
-git push -u origin main
+npm run dev       # Start local development server
+npm run build     # Create optimized production build
+npm run preview   # Preview the production build
+npm run lint      # Run lint checks
+npm run typecheck # Run TypeScript checks
+npm run test:api  # Run contact API tests
 ```
 
-**2. Deploy on Vercel:** sign in to [vercel.com](https://vercel.com) with GitHub → *Add New → Project* →
-import `anjalikokare/portfolio` → **Deploy**. `vercel.json` already sets the build. You'll get a
-permanent `https://<name>.vercel.app` link, and every `git push` redeploys automatically.
+## 🗂️ Customize the Portfolio
 
-**3. Turn on the contact form:** add the two environment variables above and redeploy.
+| Part | File |
+|:--|:--|
+| Portfolio text and projects | [`src/data/portfolio.ts`](src/data/portfolio.ts) |
+| Social and profile links | [`src/data/portfolio.ts`](src/data/portfolio.ts) |
+| Global theme and animations | [`src/index.css`](src/index.css) |
+| Page title and SEO | [`index.html`](index.html) |
+| Resume PDF | [`public/Anjali_Kokare_Resume.pdf`](public/Anjali_Kokare_Resume.pdf) |
+| Certificates | [`public/certificates/`](public/certificates/) |
+| Contact API | [`api/contact.ts`](api/contact.ts) |
 
-**4. After it's live:** put the URL in `index.html` (canonical + `og:image`) and on your resume/LinkedIn.
+## 📬 Contact Form Setup
 
-## Accessibility & performance notes
+The contact form uses a Vercel Function and Resend for email delivery.
 
-- Semantic landmarks, skip link, visible focus rings, `aria-expanded` on menus and toggles, alt text on images.
-- Animations respect `prefers-reduced-motion`.
-- Fonts are self-hosted via Fontsource (no external font requests); certificate images lazy-load.
+1. Create a free [Resend](https://resend.com) account.
+2. Generate an API key.
+3. Add these variables in Vercel:
+
+   ```env
+   RESEND_API_KEY=re_your_api_key
+   CONTACT_TO_EMAIL=your-resend-email@example.com
+   ```
+
+4. Redeploy the project and test the form from the live site.
+
+The form validates input, includes bot protection, and provides a mail-app fallback if the backend is unavailable.
+
+## ☁️ Deploy to Vercel
+
+1. Push the project to GitHub.
+2. Import the repository in [Vercel](https://vercel.com/new).
+3. Keep the detected Vite build settings.
+4. Add the Resend environment variables.
+5. Deploy.
+
+```bash
+npm run build
+git add .
+git commit -m "Update portfolio"
+git push
+```
+
+## ♿ Accessibility
+
+- Semantic page landmarks
+- Keyboard-visible focus states
+- Skip navigation link
+- Descriptive image alternatives
+- Reduced-motion support
+- Responsive mobile navigation
+
+---
+
+<div align="center">
+
+**Designed and developed by Anjali Rameshwar Kokare**
+
+⭐ If you like this portfolio, consider starring the repository.
+
+</div>
