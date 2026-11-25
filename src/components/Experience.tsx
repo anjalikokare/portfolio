@@ -79,7 +79,7 @@ function Hackathon({ item }: { item: ExperienceItem }) {
       <div className="relative"><Header item={item} /></div>
       <ul className="relative mt-6 grid gap-2.5 sm:grid-cols-2">
         {item.points?.map((p) => (
-          <li key={p} className="flex gap-2.5 rounded-2xl bg-white/70 px-4 py-3 text-sm leading-relaxed backdrop-blur">
+          <li key={p} className="flex gap-2.5 rounded-2xl bg-white/70 px-4 py-3 text-sm leading-relaxed backdrop-blur dark:bg-[#211d29] dark:text-[#f8f5ef] dark:ring-1 dark:ring-peach-300/20">
             <span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-peach-500" aria-hidden />
             {p}
           </li>

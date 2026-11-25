@@ -10,7 +10,7 @@ export type Accent = 'lavender' | 'peach' | 'mint' | 'sky' | 'butter'
 
 export const profile = {
   name: 'Anjali Rameshwar Kokare',
-  shortName: 'Anjali',
+  shortName: 'Anjali Kokare',
   headline: ['Data Science Student', 'Full-Stack Developer', 'ML Enthusiast'],
   location: 'Washim, Maharashtra, India',
   email: '24f2002015@ds.study.iitm.ac.in',
@@ -18,8 +18,8 @@ export const profile = {
     'I’m an IIT Madras Data Science student who builds secure, tested full-stack applications and machine learning pipelines: from FastAPI and Flask backends with role-based access control to an NLP ensemble scoring 0.82629 on a 198K-comment Kaggle task.',
   // Resume file lives in /public. Replace it whenever you update your resume.
   resumeUrl: 'Anjali_Kokare_Resume.pdf',
-  // TODO: Add a profile image later (e.g. '/profile.jpg' in /public). Leave null to keep the code card.
-  profileImage: null as string | null,
+  // Keep the profile image in /public so the badge never depends on an expiring external URL.
+  profileImage: '/Anjali_Kokare_Profile.png' as string | null,
 }
 
 export const links = {
@@ -274,7 +274,7 @@ export const education = {
   short: 'IIT Madras',
   degree: 'B.S. in Data Science and Applications',
   period: '2024 – Present',
-  location: 'Chennai (Online)',
+  location: 'Chennai',
   status: ['Diploma Level completed', 'Degree Level ongoing'],
   cgpa: '7.72',
   coursework: [

@@ -42,7 +42,7 @@ const socials = [
 export default function Contact() {
   const [copied, setCopied] = useState(false)
   const [form, setForm] = useState({ name: '', email: '', message: '', website: '' })
-  const [status, setStatus] = useState<'idle' | 'sending' | 'sent' | 'error'>('idle')
+  const [status, setStatus] = useState<'idle' | 'sending' | 'sent' | 'error' | 'fallback'>('idle')
   const [error, setError] = useState('')
 
   const copy = async () => {
@@ -55,16 +55,16 @@ export default function Contact() {
     }
   }
 
-  const openMailApp = () => {
+  const emailDraftUrl = () => {
     const subject = encodeURIComponent(`Portfolio enquiry from ${form.name}`)
     const body = encodeURIComponent(`${form.message}\n\n— ${form.name} (${form.email})`)
-    window.location.href = `mailto:${profile.email}?subject=${subject}&body=${body}`
+    return `mailto:${profile.email}?subject=${subject}&body=${body}`
   }
 
   /**
    * Sends the message to the backend at /api/contact (api/contact.ts, a Vercel Function).
-   * If the backend isn't configured or reachable, it falls back to the visitor's email app
-   * and says so. It never shows "sent" unless the server confirmed delivery.
+   * If the backend isn't configured or reachable, it offers an email-app link instead.
+   * It never shows "sent" unless the server confirmed delivery.
    */
   const onSubmit = async (e: FormEvent) => {
     e.preventDefault()
@@ -87,11 +87,15 @@ export default function Contact() {
         setError(data.error || 'Please check your message and try again.')
         return
       }
+      if (res.status === 503 || data.fallback === 'mailto') {
+        setStatus('fallback')
+        setError(data.error || 'The message service is unavailable. Please email me directly.')
+        return
+      }
       throw new Error('backend unavailable')
     } catch {
-      setStatus('error')
-      setError('The message service is unavailable right now, so I opened your email app instead.')
-      openMailApp()
+      setStatus('fallback')
+      setError('Could not reach the message service. Please email me directly.')
     }
   }
 
@@ -168,6 +172,12 @@ export default function Contact() {
               {status === 'error' && (
                 <p className="flex items-start gap-2 rounded-2xl bg-peach-50 px-4 py-3 text-sm font-medium text-peach-700">
                   <AlertCircle className="mt-0.5 h-4 w-4 shrink-0" /> {error}
+                </p>
+              )}
+              {status === 'fallback' && (
+                <p className="flex items-start gap-2 rounded-2xl bg-sky-50 px-4 py-3 text-sm font-medium text-sky-700">
+                  <Mail className="mt-0.5 h-4 w-4 shrink-0" /> {error}
+                  <a className="ml-1 shrink-0 underline underline-offset-2" href={emailDraftUrl()}>Open email</a>
                 </p>
               )}
             </div>

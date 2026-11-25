@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import { ArrowUp, Heart } from 'lucide-react'
+import { ArrowRight, ArrowUp, Heart } from 'lucide-react'
 import Navbar from './components/Navbar'
 import Hero from './components/Hero'
 import About from './components/About'
@@ -35,15 +35,34 @@ function BackToTop() {
 
 function Footer() {
   return (
-    <footer className="border-t border-line py-10">
-      <div className="mx-auto flex max-w-6xl flex-col items-center justify-between gap-4 px-5 text-sm text-muted sm:flex-row sm:px-8">
-        <p>© 2026 {profile.name}</p>
-        <p className="inline-flex items-center gap-1.5">
-          Built with React + TypeScript <Heart className="h-3.5 w-3.5 fill-peach-300 text-peach-500" aria-hidden />
-        </p>
-        <div className="flex items-center gap-2">
-          <a href={links.github} target="_blank" rel="noreferrer" aria-label="GitHub" className="grid h-9 w-9 place-items-center rounded-full hover:bg-white hover:text-ink"><GithubIcon /></a>
-          <a href={links.linkedin} target="_blank" rel="noreferrer" aria-label="LinkedIn" className="grid h-9 w-9 place-items-center rounded-full hover:bg-white hover:text-ink"><LinkedinIcon /></a>
+    <footer className="site-footer border-t border-line py-8 sm:py-12">
+      <div className="mx-auto max-w-6xl px-5 sm:px-8">
+        <div className="footer-invite relative overflow-hidden rounded-[1.75rem] border border-[#e9e2f5] bg-gradient-to-br from-[#f4f1ff] via-[#fffaf7] to-[#fff4ee] p-6 sm:rounded-[2rem] sm:p-9">
+          <div className="footer-glow absolute -right-14 -top-20 h-52 w-52 rounded-full bg-[#d9d0ff]/60 blur-3xl" aria-hidden />
+          <div className="relative flex flex-col gap-5 sm:flex-row sm:items-center sm:justify-between">
+            <div>
+              <p className="font-mono text-[10px] font-semibold uppercase tracking-[0.18em] text-[#7c68ee]">Thanks for stopping by</p>
+              <h2 className="mt-2 font-serif text-3xl italic leading-tight text-[#211f2e] sm:text-4xl">Good things start with a hello.</h2>
+              <p className="mt-2 text-sm text-[#6b6879]">I’d love to hear what you’re working on.</p>
+            </div>
+            <a href="#contact" className="inline-flex w-fit shrink-0 items-center gap-2 rounded-full bg-[#211f2e] px-5 py-3 text-sm font-bold text-white shadow-sm transition hover:-translate-y-0.5 hover:bg-[#373345] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#7c68ee]">
+              Say hello <ArrowRight className="h-4 w-4" />
+            </a>
+          </div>
+        </div>
+
+        <div className="footer-bottom mt-6 flex flex-col items-center justify-between gap-4 text-xs text-muted sm:flex-row">
+          <a href="#home" className="flex items-center gap-2.5 rounded-full font-semibold text-ink focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#7c68ee]">
+            <span aria-hidden className="brand-mark grid h-8 w-8 place-items-center rounded-[0.7rem] font-serif text-[15px] font-semibold italic leading-none text-white shadow-sm">
+              ak
+            </span>
+            {profile.name}
+          </a>
+          <p>Built with React + TypeScript <Heart className="inline h-3.5 w-3.5 fill-peach-300 text-peach-500" aria-hidden /> · © 2026</p>
+          <div className="flex items-center gap-2">
+            <a href={links.github} target="_blank" rel="noreferrer" aria-label="GitHub" className="grid h-9 w-9 place-items-center rounded-full border border-line transition hover:border-lavender-300 hover:bg-lavender-50 hover:text-lavender-700"><GithubIcon /></a>
+            <a href={links.linkedin} target="_blank" rel="noreferrer" aria-label="LinkedIn" className="grid h-9 w-9 place-items-center rounded-full border border-line transition hover:border-lavender-300 hover:bg-lavender-50 hover:text-lavender-700"><LinkedinIcon /></a>
+          </div>
         </div>
       </div>
     </footer>

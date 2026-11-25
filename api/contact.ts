@@ -10,8 +10,8 @@
  *   CONTACT_FROM_EMAIL optional  sender; defaults to Resend's test sender "onboarding@resend.dev",
  *                                which can only deliver to the email your Resend account uses.
  *
- * If the variables are missing the endpoint answers 503, and the site falls back to
- * opening the visitor's email app, so the form never pretends a message was sent.
+ * If the variables are missing the endpoint answers 503, and the site offers a
+ * prefilled email-app link instead of pretending a message was sent.
  */
 
 type Payload = { name?: unknown; email?: unknown; message?: unknown; website?: unknown }
@@ -71,7 +71,10 @@ export async function POST(request: Request): Promise<Response> {
 
   const apiKey = process.env.RESEND_API_KEY
   const to = process.env.CONTACT_TO_EMAIL
-  if (!apiKey || !to) return json(503, { error: 'Contact form is not configured yet.', fallback: 'mailto' })
+  if (!apiKey || !to) {
+    console.error('Contact form is missing RESEND_API_KEY or CONTACT_TO_EMAIL')
+    return json(503, { error: 'Email delivery is not configured yet. Please email me directly.', fallback: 'mailto' })
+  }
 
   const { name, email, message } = v.data
   const from = process.env.CONTACT_FROM_EMAIL || 'Portfolio Contact <onboarding@resend.dev>'

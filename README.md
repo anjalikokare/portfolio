@@ -101,16 +101,23 @@ The contact form uses a Vercel Function and Resend for email delivery.
 
 1. Create a free [Resend](https://resend.com) account.
 2. Generate an API key.
-3. Add these variables in Vercel:
+3. In Vercel, open **Project → Settings → Environment Variables** and add:
 
    ```env
    RESEND_API_KEY=re_your_api_key
-   CONTACT_TO_EMAIL=your-resend-email@example.com
+   CONTACT_TO_EMAIL=anjalirkokare@gmail.com
    ```
 
-4. Redeploy the project and test the form from the live site.
+   Keep the API key private; never commit it or share it in chat. The default Resend
+   sender can deliver only to the email address on your Resend account. To deliver
+   to another inbox, verify a sending domain in Resend and set `CONTACT_FROM_EMAIL`
+   to an address on that domain.
 
-The form validates input, includes bot protection, and provides a mail-app fallback if the backend is unavailable.
+4. Save the variables for **Production**, then redeploy the project and test the form.
+
+The form validates input and includes bot protection. If delivery is not configured
+or the email provider is unavailable, it shows a prefilled email-app link instead
+of claiming the message was sent.
 
 ## ☁️ Deploy to Vercel
 
